@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0f14">
+<title>Chimney Cake Point — Menu</title>
+<style>
+:root {
+  --bg: #0d0f14;
+  --card: #171a22;
+  --card2: #1e2230;
+  --text: #f2f4f8;
+  --muted: #8b93a7;
+  --accent: #8fd3ff;
+  --accent2: #4fb3ff;
+  --line: #262b38;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "PingFang SC", "Hiragino Sans", "Apple SD Gothic Neo", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
+.top {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(13, 15, 20, .92);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding-top: env(safe-area-inset-top);
+}
+.bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 8px; max-width: 900px; margin: 0 auto; }
+.brand { font-weight: 800; letter-spacing: .04em; text-transform: uppercase; font-size: 15px; color: var(--accent); text-shadow: 0 0 18px rgba(79, 179, 255, .45); }
+.brand small { display: block; color: var(--muted); font-weight: 500; letter-spacing: .02em; text-transform: none; text-shadow: none; font-size: 12px; margin-top: 2px; }
+.lang-btn { display: flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; background: var(--card2); border: 1px solid var(--line); font-size: 14px; font-weight: 600; }
+.lang-btn svg { width: 16px; height: 16px; }
+.chips { display: flex; gap: 8px; overflow-x: auto; padding: 4px 16px 12px; max-width: 900px; margin: 0 auto; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; padding: 7px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--muted); white-space: nowrap; transition: .2s; }
+.chip.on { background: var(--accent); color: #0b1620; border-color: var(--accent); }
+main { max-width: 900px; margin: 0 auto; padding: 14px 16px 40px; }
+.hint { display: flex; gap: 12px; align-items: center; padding: 14px; border-radius: 16px; background: linear-gradient(135deg, rgba(79, 179, 255, .16), rgba(143, 211, 255, .05)); border: 1px solid rgba(143, 211, 255, .25); margin-bottom: 8px; }
+.hint .num { flex: none; width: 40px; height: 40px; border-radius: 12px; background: var(--accent); color: #0b1620; display: grid; place-items: center; }
+.hint .num svg { width: 22px; height: 22px; }
+.hint p { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.35; }
+section { scroll-margin-top: 112px; padding-top: 22px; }
+h2 { margin: 0; font-size: 21px; font-weight: 800; letter-spacing: .01em; }
+.desc { margin: 4px 0 14px; color: var(--muted); font-size: 14px; line-height: 1.4; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.card { position: relative; text-align: start; background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; transition: transform .15s; }
+.card:active { transform: scale(.97); }
+.art { aspect-ratio: 1 / 1; display: grid; place-items: center; }
+.art svg, .art img { width: 82%; height: 82%; object-fit: contain; }
+.art img.photo { width: 100%; height: 100%; object-fit: cover; }
+.art:has(.photo) { background: #fff !important; }
+.info { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.name { font-weight: 700; font-size: 15px; line-height: 1.25; }
+.sub { color: var(--muted); font-size: 12px; line-height: 1.35; }
+.price { margin-top: auto; padding-top: 6px; font-weight: 800; font-size: 16px; color: var(--accent); }
+.extras { display: grid; gap: 10px; }
+.row { display: flex; align-items: center; gap: 12px; padding: 10px 14px 10px 10px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; text-align: start; width: 100%; }
+.row .row .art { width: 48px; height: 48px; aspect-ratio: auto; border-radius: 12px; flex: none; }
+.row .name { flex: 1; }
+.row .price { margin: 0; padding: 0; }
+.foot { margin-top: 34px; text-align: center; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.foot p { margin: 0 0 8px; }
+.foot a { color: var(--accent); }
+.sign { margin: 26px 0 0; font-size: 26px; font-weight: 900; letter-spacing: .08em; color: var(--accent); text-shadow: 0 0 10px rgba(79, 179, 255, .7), 0 0 28px rgba(79, 179, 255, .45); }
+.quick { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.quick button { padding: 8px 14px; border-radius: 999px; background: var(--card2); border: 1px solid var(--line); font-size: 14px; font-weight: 600; }
+.quick button.on { background: var(--accent); color: #0b1620; border-color: var(--accent); }
+.find { width: 100%; padding: 13px 14px; margin-bottom: 12px; border-radius: 14px; background: var(--bg); border: 1px solid var(--line); color: var(--text); font: inherit; font-size: 16px; outline: none; }
+.find:focus { border-color: var(--accent); }
+.empty { color: var(--muted); font-size: 14px; padding: 8px 2px; }
+.veil { position: fixed; inset: 0; z-index: 50; background: rgba(0, 0, 0, .6); opacity: 0; pointer-events: none; transition: opacity .25s; }
+.veil.open { opacity: 1; pointer-events: auto; }
+.sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; max-width: 560px; margin: 0 auto; background: var(--card); border-radius: 24px 24px 0 0; border: 1px solid var(--line); border-bottom: 0; padding: 10px 20px calc(24px + env(safe-area-inset-bottom)); transform: translateY(105%); transition: transform .3s cubic-bezier(.2, .8, .2, 1); max-height: 88vh; overflow-y: auto; }
+.sheet.open { transform: none; }
+.grip { width: 40px; height: 5px; border-radius: 3px; background: var(--line); margin: 0 auto 12px; }
+.sheet .big { aspect-ratio: 1 / 1; border-radius: 18px; display: grid; place-items: center; margin-bottom: 16px; overflow: hidden; }
+.sheet .big svg { height: 86%; width: auto; }
+.sheet .big img { width: 100%; height: 100%; object-fit: cover; }
+.say { margin-bottom: 14px; padding: 14px 16px; border-radius: 16px; background: var(--bg); border: 1px solid rgba(143, 211, 255, .25); text-align: center; }
+.say p { margin: 0 0 6px; font-size: 14px; font-weight: 600; color: var(--muted); line-height: 1.35; }
+.say .n { direction: ltr; font-size: 30px; font-weight: 900; line-height: 1.15; letter-spacing: .03em; color: var(--accent); text-shadow: 0 0 10px rgba(79, 179, 255, .6), 0 0 26px rgba(79, 179, 255, .35); }
+.say small { direction: ltr; display: block; margin-top: 6px; font-size: 12px; font-weight: 700; letter-spacing: .08em; color: var(--muted); }
+.sheet h3 { margin: 0 0 4px; font-size: 22px; }
+.sheet .sub { font-size: 14px; }
+.sheet .price { font-size: 22px; }
+.close { margin-top: 16px; width: 100%; padding: 14px; border-radius: 14px; background: var(--card2); border: 1px solid var(--line); font-weight: 700; }
+.langs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.langs button { padding: 14px 12px; border-radius: 14px; background: var(--card2); border: 1px solid var(--line); font-weight: 600; text-align: start; }
+.langs button.on { background: var(--accent); color: #0b1620; border-color: var(--accent); }
+.sheet h4 { margin: 4px 0 14px; font-size: 18px; }
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="bar">
+    <div class="brand">Chimney Cake Point<small id="tagline"></small></div>
+    <button class="lang-btn" id="lang-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg><span id="lang-name"></span></button>
+  </div>
+  <nav class="chips" id="chips"></nav>
+</div>
+<main id="menu"></main>
+<div class="veil" id="veil"></div>
+<div class="sheet" id="sheet"></div>
+<script>
+const langs = [
+  ["en", "English", "English"], ["hu", "Magyar", "Hungarian"], ["de", "Deutsch", "German"], ["ru", "Русский", "Russian"],
+  ["uk", "Українська", "Ukrainian"], ["es", "Español", "Spanish"], ["it", "Italiano", "Italian"], ["fr", "Français", "French"],
+  ["pl", "Polski", "Polish"], ["tr", "Türkçe", "Turkish"], ["ku", "Kurdî", "Kurdish Kurmanji"], ["zh", "简体中文", "Chinese Simplified"],
+  ["ja", "日本語", "Japanese"], ["ko", "한국어", "Korean"], ["pt", "Português", "Portuguese"], ["nl", "Nederlands", "Dutch"],
+  ["cs", "Čeština", "Czech"], ["sk", "Slovenčina", "Slovak"], ["ro", "Română", "Romanian"], ["bg", "Български", "Bulgarian"],
+  ["el", "Ελληνικά", "Greek"], ["hr", "Hrvatski", "Croatian"], ["sr", "Српски", "Serbian"], ["sl", "Slovenščina", "Slovenian"],
+  ["bs", "Bosanski", "Bosnian"], ["cnr", "Crnogorski", "Montenegrin"], ["sq", "Shqip", "Albanian"], ["mk", "Македонски", "Macedonian"],
+  ["be", "Беларуская", "Belarusian"], ["lt", "Lietuvių", "Lithuanian"], ["lv", "Latviešu", "Latvian"], ["et", "Eesti", "Estonian"],
+  ["fi", "Suomi", "Finnish"], ["sv", "Svenska", "Swedish"], ["no", "Norsk", "Norwegian"], ["da", "Dansk", "Danish"],
+  ["is", "Íslenska", "Icelandic"], ["ga", "Gaeilge", "Irish"], ["mt", "Malti", "Maltese"], ["ca", "Català", "Catalan"],
+  ["ka", "ქართული", "Georgian"], ["hy", "Հայերեն", "Armenian"], ["az", "Azərbaycanca", "Azerbaijani"], ["ar", "العربية", "Arabic"],
+  ["he", "עברית", "Hebrew"], ["fa", "فارسی", "Persian Farsi"], ["ur", "اردو", "Urdu"], ["ckb", "کوردی", "Kurdish Sorani"],
+  ["hi", "हिन्दी", "Hindi"], ["bn", "বাংলা", "Bengali"], ["ne", "नेपाली", "Nepali"], ["kk", "Қазақша", "Kazakh"],
+  ["uz", "Oʻzbekcha", "Uzbek"], ["ky", "Кыргызча", "Kyrgyz"], ["tg", "Тоҷикӣ", "Tajik"], ["tk", "Türkmençe", "Turkmen"],
+  ["mn", "Монгол", "Mongolian"], ["zh-Hant", "繁體中文", "Chinese Traditional"], ["vi", "Tiếng Việt", "Vietnamese"], ["id", "Bahasa Indonesia", "Indonesian"],
+  ["th", "ไทย", "Thai"], ["tl", "Filipino", "Filipino Tagalog"]
+];
+const rtl = ["ar", "he", "fa", "ur", "ckb"];
+const quick = ["en", "de", "it", "es", "ro", "he", "pl", "fr"];
+const contact = "chimneycakepo1nt@gmail.com";
+const codes = langs.map(l => l[0]);
+const tr = s => {
+  const parts = s.split("|");
+  return Object.fromEntries(codes.map((c, i) => [c, parts.length === 1 ? parts[0] : parts[i]]));
+};
+
+const ui = {
+  hint: tr("Tap a dish and show the screen to our staff|Koppintson egy termékre, és mutassa meg a képernyőt a kollégáinknak|Tippen Sie auf ein Produkt und zeigen Sie den Bildschirm unserem Personal|Нажмите на позицию и покажите экран персоналу|Натисніть на позицію та покажіть екран персоналу|Toque un producto y muestre la pantalla al personal|Tocchi un prodotto e mostri lo schermo al personale|Touchez un produit et montrez l'écran au personnel|Dotknij produktu i pokaż ekran obsłudze|Bir ürüne dokunun ve ekranı personele gösterin|Li ser berhemekê bitikînin û ekranê nîşanî karmendan bidin|点击商品，然后把屏幕给店员看|商品をタップして、画面をスタッフにお見せください|메뉴를 누르고 화면을 직원에게 보여 주세요|Toque num produto e mostre o ecrã ao nosso pessoal|Tik op een product en laat het scherm aan ons personeel zien|Klepněte na položku a ukažte obrazovku obsluze|Ťuknite na položku a ukážte obrazovku obsluhe|Atingeți un produs și arătați ecranul personalului|Докоснете продукт и покажете екрана на персонала|Πατήστε ένα προϊόν και δείξτε την οθόνη στο προσωπικό|Dodirnite proizvod i pokažite zaslon osoblju|Додирните производ и покажите екран особљу|Tapnite izdelek in pokažite zaslon osebju|Dodirnite proizvod i pokažite ekran osoblju|Dodirnite proizvod i pokažite ekran osoblju|Prekni një produkt dhe tregoja ekranin stafit|Допрете производ и покажете го екранот на персоналот|Націсніце на пазіцыю і пакажыце экран персаналу|Palieskite patiekalą ir parodykite ekraną personalui|Pieskarieties produktam un parādiet ekrānu personālam|Puudutage toodet ja näidake ekraani personalile|Napauta tuotetta ja näytä näyttö henkilökunnalle|Tryck på en produkt och visa skärmen för personalen|Trykk på et produkt og vis skjermen til personalet|Tryk på et produkt og vis skærmen til personalet|Ýttu á vöru og sýndu starfsfólkinu skjáinn|Tapáil ar tháirge agus taispeáin an scáileán don fhoireann|Agħfas fuq prodott u uri l-iskrin lill-istaff|Toca un producte i mostra la pantalla al personal|შეეხეთ პროდუქტს და აჩვენეთ ეკრანი პერსონალს|Հպեք ապրանքին և ցույց տվեք էկրանը անձնակազմին|Məhsula toxunun və ekranı işçilərə göstərin|اضغط على المنتج وأظهر الشاشة للموظفين|הקישו על מוצר והראו את המסך לצוות|روی محصول بزنید و صفحه را به کارکنان نشان دهید|کسی آئٹم پر ٹیپ کریں اور اسکرین عملے کو دکھائیں|دەست لە بەرهەمێک بدە و شاشەکە نیشانی ستافەکە بدە|किसी आइटम पर टैप करें और स्क्रीन स्टाफ़ को दिखाएँ|একটি আইটেমে ট্যাপ করুন এবং স্ক্রিনটি কর্মীদের দেখান|कुनै वस्तुमा ट्याप गर्नुहोस् र स्क्रिन कर्मचारीलाई देखाउनुहोस्|Тағамды басып, экранды қызметкерге көрсетіңіз|Mahsulotni bosing va ekranni xodimga ko'rsating|Тамакты басып, экранды кызматкерге көрсөтүңүз|Ба маҳсулот пахш кунед ва экранро ба кормандон нишон диҳед|Önüme basyň we ekrany işgärlere görkeziň|Бүтээгдэхүүн дээр дарж, дэлгэцийг ажилтанд үзүүлнэ үү|點選商品，然後把螢幕給店員看|Chạm vào món và đưa màn hình cho nhân viên xem|Ketuk menu dan tunjukkan layar ke staf kami|แตะที่เมนูแล้วแสดงหน้าจอให้พนักงานดู|I-tap ang isang item at ipakita ang screen sa aming staff"),
+  say: tr("Show this to the staff|Mutassa meg ezt a kollégáknak|Zeigen Sie dies dem Personal|Покажите это персоналу|Покажіть це персоналу|Muestre esto al personal|Mostri questo al personale|Montrez ceci au personnel|Pokaż to obsłudze|Bunu personele gösterin|Vê nîşanî karmendan bidin|请把这个给店员看|こちらをスタッフにお見せください|이 화면을 직원에게 보여 주세요|Mostre isto ao pessoal|Laat dit aan het personeel zien|Ukažte to obsluze|Ukážte to obsluhe|Arătați acest lucru personalului|Покажете това на персонала|Δείξτε αυτό στο προσωπικό|Pokažite ovo osoblju|Покажите ово особљу|Pokažite to osebju|Pokažite ovo osoblju|Pokažite ovo osoblju|Tregojani këtë stafit|Покажете го ова на персоналот|Пакажыце гэта персаналу|Parodykite tai personalui|Parādiet to personālam|Näidake seda personalile|Näytä tämä henkilökunnalle|Visa detta för personalen|Vis dette til personalet|Vis dette til personalet|Sýndu starfsfólkinu þetta|Taispeáin é seo don fhoireann|Uri dan lill-istaff|Mostra això al personal|აჩვენეთ ეს პერსონალს|Ցույց տվեք սա անձնակազմին|Bunu işçilərə göstərin|أظهر هذا للموظفين|הראו את זה לצוות|این را به کارکنان نشان دهید|یہ عملے کو دکھائیں|ئەمە نیشانی ستافەکە بدە|यह स्टाफ़ को दिखाएँ|এটি কর্মীদের দেখান|यो कर्मचारीलाई देखाउनुहोस्|Мұны қызметкерге көрсетіңіз|Buni xodimga ko'rsating|Муну кызматкерге көрсөтүңүз|Инро ба кормандон нишон диҳед|Muny işgärlere görkeziň|Үүнийг ажилтанд үзүүлнэ үү|請把這個給店員看|Đưa cái này cho nhân viên xem|Tunjukkan ini ke staf|แสดงสิ่งนี้ให้พนักงานดู|Ipakita ito sa staff"),
+  allergens: tr("Allergies? Please ask our staff.|Allergiája van? Kérdezze kollégáinkat.|Allergien? Bitte fragen Sie unser Personal.|Есть аллергия? Спросите у персонала.|Маєте алергію? Запитайте персонал.|¿Alergias? Pregunte a nuestro personal.|Allergie? Chieda al nostro personale.|Allergies ? Demandez à notre personnel.|Alergie? Zapytaj obsługę.|Alerjiniz mi var? Lütfen personele sorun.|Alerjiya we heye? Ji karmendan bipirsin.|如有过敏，请咨询店员。|アレルギーのある方はスタッフにお尋ねください。|알레르기가 있으시면 직원에게 문의해 주세요.|Alergias? Pergunte ao nosso pessoal.|Allergieën? Vraag het ons personeel.|Alergie? Zeptejte se obsluhy.|Alergie? Opýtajte sa obsluhy.|Alergii? Întrebați personalul nostru.|Алергии? Попитайте нашия персонал.|Αλλεργίες; Ρωτήστε το προσωπικό μας.|Alergije? Pitajte naše osoblje.|Алергије? Питајте наше особље.|Alergije? Vprašajte naše osebje.|Alergije? Pitajte naše osoblje.|Alergije? Pitajte naše osoblje.|Alergji? Pyetni stafin tonë.|Алергии? Прашајте го нашиот персонал.|Алергія? Спытайце ў персаналу.|Alergijos? Paklauskite mūsų personalo.|Alerģija? Jautājiet mūsu personālam.|Allergiad? Küsige meie personalilt.|Allergioita? Kysy henkilökunnaltamme.|Allergier? Fråga vår personal.|Allergier? Spør personalet vårt.|Allergier? Spørg vores personale.|Ofnæmi? Spurðu starfsfólkið okkar.|Ailléirgí? Fiafraigh dár bhfoireann.|Allerġiji? Staqsi lill-istaff tagħna.|Al·lèrgies? Pregunta al nostre personal.|ალერგია გაქვთ? ჰკითხეთ ჩვენს პერსონალს.|Ալերգիա՞ ունեք։ Հարցրեք մեր անձնակազմին։|Allergiyanız var? İşçilərimizdən soruşun.|هل لديك حساسية؟ اسأل موظفينا.|אלרגיות? שאלו את הצוות שלנו.|حساسیت دارید؟ از کارکنان ما بپرسید.|الرجی ہے؟ ہمارے عملے سے پوچھیں۔|هەستیاریت هەیە؟ لە ستافەکەمان بپرسە.|एलर्जी है? हमारे स्टाफ़ से पूछें।|অ্যালার্জি আছে? আমাদের কর্মীদের জিজ্ঞাসা করুন।|एलर्जी छ? हाम्रा कर्मचारीलाई सोध्नुहोस्।|Аллергияңыз бар ма? Қызметкерлерімізден сұраңыз.|Allergiyangiz bormi? Xodimlarimizdan so'rang.|Аллергияңыз барбы? Кызматкерлерибизден сураңыз.|Аллергия доред? Аз кормандони мо пурсед.|Allergiýaňyz barmy? Işgärlerimizden soraň.|Харшилтай юу? Манай ажилтнаас асуугаарай.|如有過敏，請詢問店員。|Bị dị ứng? Hãy hỏi nhân viên của chúng tôi.|Punya alergi? Tanyakan kepada staf kami.|แพ้อาหารหรือไม่? สอบถามพนักงานของเรา|May allergy? Magtanong sa aming staff."),
+  close: tr("Close|Bezárás|Schließen|Закрыть|Закрити|Cerrar|Chiudi|Fermer|Zamknij|Kapat|Bigire|关闭|閉じる|닫기|Fechar|Sluiten|Zavřít|Zavrieť|Închide|Затвори|Κλείσιμο|Zatvori|Затвори|Zapri|Zatvori|Zatvori|Mbyll|Затвори|Закрыць|Uždaryti|Aizvērt|Sulge|Sulje|Stäng|Lukk|Luk|Loka|Dún|Agħlaq|Tanca|დახურვა|Փակել|Bağla|إغلاق|סגירה|بستن|بند کریں|داخستن|बंद करें|বন্ধ করুন|बन्द गर्नुहोस्|Жабу|Yopish|Жабуу|Пӯшидан|Ýap|Хаах|關閉|Đóng|Tutup|ปิด|Isara"),
+  choose: tr("Language|Nyelv|Sprache|Язык|Мова|Idioma|Lingua|Langue|Język|Dil|Ziman|语言|言語|언어|Idioma|Taal|Jazyk|Jazyk|Limbă|Език|Γλώσσα|Jezik|Језик|Jezik|Jezik|Jezik|Gjuha|Јазик|Мова|Kalba|Valoda|Keel|Kieli|Språk|Språk|Sprog|Tungumál|Teanga|Lingwa|Idioma|ენა|Լեզու|Dil|اللغة|שפה|زبان|زبان|زمان|भाषा|ভাষা|भाषा|Тіл|Til|Тил|Забон|Dil|Хэл|語言|Ngôn ngữ|Bahasa|ภาษา|Wika"),
+  tagline: tr("Menu|Étlap|Speisekarte|Меню|Меню|Menú|Menù|Menu|Menu|Menü|Menû|菜单|メニュー|메뉴|Menu|Menu|Menu|Menu|Meniu|Меню|Μενού|Jelovnik|Јеловник|Meni|Meni|Jelovnik|Menuja|Мени|Меню|Meniu|Ēdienkarte|Menüü|Menu|Meny|Meny|Menu|Matseðill|Biachlár|Menu|Menú|მენიუ|Մենյու|Menyu|القائمة|תפריט|منو|مینو|مینیو|मेन्यू|মেনু|मेनु|Мәзір|Menyu|Меню|Меню|Menýu|Цэс|菜單|Thực đơn|Menu|เมนู|Menu"),
+  search: tr("Search language|Nyelv keresése|Sprache suchen|Поиск языка|Пошук мови|Buscar idioma|Cerca lingua|Rechercher une langue|Szukaj języka|Dil ara|Li ziman bigere|搜索语言|言語を検索|언어 검색|Pesquisar idioma|Taal zoeken|Hledat jazyk|Hľadať jazyk|Caută limba|Търсене на език|Αναζήτηση γλώσσας|Traži jezik|Претражи језик|Iskanje jezika|Traži jezik|Traži jezik|Kërko gjuhën|Барај јазик|Пошук мовы|Ieškoti kalbos|Meklēt valodu|Otsi keelt|Hae kieltä|Sök språk|Søk etter språk|Søg efter sprog|Leita að tungumáli|Cuardaigh teanga|Fittex lingwa|Cerca idioma|ენის ძებნა|Որոնել լեզու|Dil axtar|ابحث عن لغة|חיפוש שפה|جستجوی زبان|زبان تلاش کریں|گەڕان بۆ زمان|भाषा खोजें|ভাষা খুঁজুন|भाषा खोज्नुहोस्|Тілді іздеу|Tilni qidirish|Тил издөө|Ҷустуҷӯи забон|Dil gözle|Хэл хайх|搜尋語言|Tìm ngôn ngữ|Cari bahasa|ค้นหาภาษา|Maghanap ng wika"),
+  nothing: tr("No matches|Nincs találat|Keine Treffer|Ничего не найдено|Нічого не знайдено|Sin resultados|Nessun risultato|Aucun résultat|Brak wyników|Sonuç yok|Tiştek nehat dîtin|无匹配结果|該当なし|결과 없음|Sem resultados|Geen resultaten|Žádné výsledky|Žiadne výsledky|Niciun rezultat|Няма резултати|Κανένα αποτέλεσμα|Nema rezultata|Нема резултата|Ni zadetkov|Nema rezultata|Nema rezultata|Asnjë rezultat|Нема резултати|Нічога не знойдзена|Rezultatų nėra|Nav rezultātu|Tulemusi pole|Ei tuloksia|Inga träffar|Ingen treff|Ingen resultater|Engar niðurstöður|Gan torthaí|L-ebda riżultat|Cap resultat|შედეგი არ არის|Արդյունքներ չկան|Nəticə yoxdur|لا توجد نتائج|אין תוצאות|نتیجه‌ای یافت نشد|کوئی نتیجہ نہیں|هیچ ئەنجامێک نییە|कोई परिणाम नहीं|কোনো ফলাফল নেই|कुनै नतिजा छैन|Ештеңе табылмады|Hech narsa topilmadi|Эч нерсе табылган жок|Ҳеҷ чиз ёфт нашуд|Hiç zat tapylmady|Илэрц олдсонгүй|沒有符合的結果|Không có kết quả|Tidak ada hasil|ไม่พบผลลัพธ์|Walang resulta"),
+  mistake: tr("Found a translation error? Tell us|Hibát talált a fordításban? Írjon nekünk|Fehler in der Übersetzung gefunden? Sagen Sie es uns|Нашли ошибку в переводе? Напишите нам|Знайшли помилку в перекладі? Напишіть нам|¿Ha encontrado un error en la traducción? Díganoslo|Ha trovato un errore nella traduzione? Ce lo dica|Une erreur de traduction ? Dites-le-nous|Znalazłeś błąd w tłumaczeniu? Napisz do nas|Çeviride hata mı buldunuz? Bize yazın|Di wergerê de şaşiyek dît? Ji me re binivîsin|发现翻译错误？请告诉我们|翻訳の誤りを見つけましたか？お知らせください|번역 오류를 발견하셨나요? 알려 주세요|Encontrou um erro na tradução? Diga-nos|Fout in de vertaling gevonden? Laat het ons weten|Našli jste chybu v překladu? Dejte nám vědět|Našli ste chybu v preklade? Dajte nám vedieť|Ați găsit o greșeală în traducere? Spuneți-ne|Открихте грешка в превода? Пишете ни|Βρήκατε λάθος στη μετάφραση; Πείτε μας|Pronašli ste pogrešku u prijevodu? Javite nam|Пронашли сте грешку у преводу? Јавите нам|Ste našli napako v prevodu? Sporočite nam|Pronašli ste grešku u prijevodu? Javite nam|Pronašli ste grešku u prevodu? Javite nam|Gjetët një gabim në përkthim? Na tregoni|Најдовте грешка во преводот? Кажете ни|Знайшлі памылку ў перакладзе? Напішыце нам|Radote vertimo klaidą? Praneškite mums|Atradāt kļūdu tulkojumā? Pastāstiet mums|Leidsite tõlkevea? Andke meile teada|Löysitkö käännösvirheen? Kerro meille|Hittat ett fel i översättningen? Säg till oss|Fant du en feil i oversettelsen? Si fra til oss|Har du fundet en fejl i oversættelsen? Sig det til os|Fannstu villu í þýðingunni? Láttu okkur vita|Botún san aistriúchán? Inis dúinn|Sibt żball fit-traduzzjoni? Għidilna|Has trobat un error a la traducció? Digues-nos-ho|თარგმანში შეცდომა იპოვეთ? გვითხარით|Թարգմանության սխա՞լ եք գտել։ Ասեք մեզ|Tərcümədə səhv tapdınız? Bizə bildirin|وجدت خطأ في الترجمة؟ أخبرنا|מצאתם טעות בתרגום? ספרו לנו|اشتباهی در ترجمه دیدید؟ به ما بگویید|ترجمے میں غلطی ملی؟ ہمیں بتائیں|هەڵەیەکت لە وەرگێڕاندا دۆزییەوە؟ پێمان بڵێ|अनुवाद में गलती मिली? हमें बताएँ|অনুবাদে ভুল পেয়েছেন? আমাদের জানান|अनुवादमा गल्ती भेट्नुभयो? हामीलाई भन्नुहोस्|Аудармадан қате таптыңыз ба? Бізге жазыңыз|Tarjimada xato topdingizmi? Bizga ayting|Котормодо ката таптыңызбы? Бизге айтыңыз|Дар тарҷума хато ёфтед? Ба мо гӯед|Terjimede ýalňyşlyk tapdyňyzmy? Bize aýdyň|Орчуулгад алдаа олсон уу? Бидэнд хэлээрэй|發現翻譯錯誤？請告訴我們|Phát hiện lỗi dịch? Hãy cho chúng tôi biết|Menemukan kesalahan terjemahan? Beri tahu kami|พบคำแปลผิดหรือไม่? บอกเรา|May nakitang mali sa salin? Sabihin sa amin")
+};
+
+const cats = [
+  { id: "coat", kind: "coat", board: "COATINGS",
+    title: tr("Classic Kürtőskalács|Klasszikus kürtőskalács|Klassischer Kürtőskalács|Классический Kürtőskalács|Класичний Kürtőskalács|Kürtőskalács clásico|Kürtőskalács classico|Kürtőskalács classique|Klasyczny Kürtőskalács|Klasik Kürtőskalács|Kürtőskalácsa klasîk|经典 Kürtőskalács|クラシック Kürtőskalács|클래식 Kürtőskalács|Kürtőskalács clássico|Klassieke Kürtőskalács|Klasický Kürtőskalács|Klasický Kürtőskalács|Kürtőskalács clasic|Класически Kürtőskalács|Κλασικό Kürtőskalács|Klasični Kürtőskalács|Класични Kürtőskalács|Klasični Kürtőskalács|Klasični Kürtőskalács|Klasični Kürtőskalács|Kürtőskalács klasik|Класичен Kürtőskalács|Класічны Kürtőskalács|Klasikinis Kürtőskalács|Klasiskais Kürtőskalács|Klassikaline Kürtőskalács|Klassinen Kürtőskalács|Klassisk Kürtőskalács|Klassisk Kürtőskalács|Klassisk Kürtőskalács|Klassísk Kürtőskalács|Kürtőskalács clasaiceach|Kürtőskalács klassiku|Kürtőskalács clàssic|კლასიკური Kürtőskalács|Դասական Kürtőskalács|Klassik Kürtőskalács|Kürtőskalács الكلاسيكي|Kürtőskalács קלאסי|Kürtőskalács کلاسیک|کلاسک Kürtőskalács|Kürtőskalácsی کلاسیک|क्लासिक Kürtőskalács|ক্লাসিক Kürtőskalács|क्लासिक Kürtőskalács|Классикалық Kürtőskalács|Klassik Kürtőskalács|Классикалык Kürtőskalács|Kürtőskalács-и классикӣ|Klassyky Kürtőskalács|Сонгодог Kürtőskalács|經典 Kürtőskalács|Kürtőskalács cổ điển|Kürtőskalács klasik|Kürtőskalács คลาสสิก|Klasikong Kürtőskalács"),
+    desc: tr("Kürtőskalács (chimney cake): traditional Hungarian pastry rolled in a coating|Hagyományos magyar kürtőskalács, választható bevonattal|Kürtőskalács (Baumstriezel): traditionelles ungarisches Gebäck mit Ummantelung|Kürtőskalács (трдельник): традиционная венгерская выпечка в обсыпке|Kürtőskalács (трдельник): традиційна угорська випічка в обсипці|Kürtőskalács (pastel chimenea): dulce tradicional húngaro con cobertura|Kürtőskalács (dolce camino): dolce tradizionale ungherese con copertura|Kürtőskalács (gâteau cheminée) : pâtisserie hongroise traditionnelle avec enrobage|Kürtőskalács (kołacz kominowy): tradycyjny węgierski wypiek w posypce|Kürtőskalács (baca keki): kaplamalı geleneksel Macar tatlısı|Kürtőskalács (kêka dûkêşê): şîrîniya kevneşopî ya Macarî bi rûpoş|Kürtőskalács（烟囱卷）：裹有配料的传统匈牙利糕点|Kürtőskalács（チムニーケーキ）：トッピングをまぶしたハンガリーの伝統菓子|Kürtőskalács(굴뚝빵): 토핑을 묻힌 헝가리 전통 빵|Kürtőskalács (bolo chaminé): doce tradicional húngaro envolvido em cobertura|Kürtőskalács (schoorsteentaart): traditioneel Hongaars gebak met een laagje|Kürtőskalács (trdelník): tradiční maďarské pečivo obalené v posypu|Kürtőskalács (trdelník): tradičné maďarské pečivo obalené v posype|Kürtőskalács (colac secuiesc): desert tradițional maghiar cu înveliș|Kürtőskalács (трделник): традиционен унгарски сладкиш с поръска|Kürtőskalács (γλυκό καμινάδα): παραδοσιακό ουγγρικό γλυκό με επικάλυψη|Kürtőskalács (trdelnik): tradicionalno mađarsko pecivo u posipu|Kürtőskalács (трделник): традиционално мађарско пециво у посипу|Kürtőskalács (trdelnik): tradicionalno madžarsko pecivo v posipu|Kürtőskalács (trdelnik): tradicionalno mađarsko pecivo u posipu|Kürtőskalács (trdelnik): tradicionalno mađarsko pecivo u posipu|Kürtőskalács (ëmbëlsirë oxhak): ëmbëlsirë tradicionale hungareze me veshje|Kürtőskalács (трделник): традиционално унгарско тесто со посип|Kürtőskalács (трдэльнік): традыцыйная венгерская выпечка ў абсыпцы|Kürtőskalács (kamino pyragas): tradicinis vengriškas pyragas su pabarstais|Kürtőskalács (skursteņkūka): tradicionāls ungāru konditorejas izstrādājums ar pārklājumu|Kürtőskalács (korstnakook): traditsiooniline Ungari küpsetis kattega|Kürtőskalács (savupiippukakku): perinteinen unkarilainen leivonnainen kuorrutteella|Kürtőskalács (skorstenskaka): traditionellt ungerskt bakverk med topping|Kürtőskalács (skorsteinskake): tradisjonelt ungarsk bakverk med topping|Kürtőskalács (skorstenskage): traditionelt ungarsk bagværk med overtræk|Kürtőskalács (strompakaka): hefðbundið ungverskt bakkelsi með hjúp|Kürtőskalács (cáca simléir): taosrán traidisiúnta Ungárach le brat|Kürtőskalács (kejk taċ-ċumnija): għaġina tradizzjonali Ungeriża miksija|Kürtőskalács (pastís xemeneia): dolç tradicional hongarès arrebossat|Kürtőskalács (ბუხრის ნამცხვარი): ტრადიციული უნგრული ცომეული მოსაყრელით|Kürtőskalács (ծխնելույզ թխվածք)՝ ավանդական հունգարական թխվածք ցանով|Kürtőskalács (baca keki): örtüklü ənənəvi Macar şirniyyatı|Kürtőskalács (كعكة المدخنة): معجنات مجرية تقليدية مغطاة بالطبقة المختارة|Kürtőskalács (עוגת ארובה): מאפה הונגרי מסורתי בציפוי|Kürtőskalács (کیک دودکشی): شیرینی سنتی مجارستانی با روکش|Kürtőskalács (چمنی کیک): کوٹنگ والی روایتی ہنگیرین پیسٹری|Kürtőskalács (کێکی دووکەڵکێش): شیرینی نەریتی هەنگاری بە ڕووپۆش|Kürtőskalács (चिमनी केक): कोटिंग वाली पारंपरिक हंगेरियन पेस्ट्री|Kürtőskalács (চিমনি কেক): কোটিং দেওয়া ঐতিহ্যবাহী হাঙ্গেরীয় পেস্ট্রি|Kürtőskalács (चिम्नी केक): कोटिङ भएको परम्परागत हङ्गेरियन पेस्ट्री|Kürtőskalács (трдельник): себілген дәстүрлі венгр тоқашы|Kürtőskalács (trdelnik): sepilgan an'anaviy Vengriya pishirig'i|Kürtőskalács (трдельник): себилген салттуу венгр тоокочу|Kürtőskalács (трделник): нонпазии анъанавии венгерӣ бо пошиш|Kürtőskalács (trdelnik): sepilen däp bolan wenger çöregi|Kürtőskalács (трдельник): цацлагатай уламжлалт Унгар гурилан бүтээгдэхүүн|Kürtőskalács（煙囪捲）：裹上配料的傳統匈牙利糕點|Kürtőskalács (bánh ống khói): bánh truyền thống Hungary phủ lớp áo|Kürtőskalács (kue cerobong): kue tradisional Hongaria berbalut taburan|Kürtőskalács (เค้กปล่องไฟ): ขนมอบดั้งเดิมของฮังการีคลุกท็อปปิ้ง|Kürtőskalács (chimney cake): tradisyonal na Hungarian na pastry na may coating") },
+  { id: "fill", kind: "fill", board: "FILLINGS",
+    title: tr("Kürtőskalács with filling|Töltött kürtőskalács|Kürtőskalács mit Füllung|Kürtőskalács с начинкой|Kürtőskalács з начинкою|Kürtőskalács relleno|Kürtőskalács ripieno|Kürtőskalács fourré|Kürtőskalács z nadzieniem|Dolgulu Kürtőskalács|Kürtőskalács bi tijîkirin|夹心 Kürtőskalács|フィリング入り Kürtőskalács|필링 Kürtőskalács|Kürtőskalács recheado|Kürtőskalács met vulling|Kürtőskalács s náplní|Kürtőskalács s plnkou|Kürtőskalács cu umplutură|Kürtőskalács с пълнеж|Kürtőskalács με γέμιση|Kürtőskalács s punjenjem|Kürtőskalács са филом|Kürtőskalács s polnilom|Kürtőskalács s filom|Kürtőskalács sa filom|Kürtőskalács me mbushje|Kürtőskalács со фил|Kürtőskalács з начынкай|Kürtőskalács su įdaru|Kürtőskalács ar pildījumu|Täidisega Kürtőskalács|Täytetty Kürtőskalács|Kürtőskalács med fyllning|Kürtőskalács med fyll|Kürtőskalács med fyld|Kürtőskalács með fyllingu|Kürtőskalács le líonadh|Kürtőskalács mimli|Kürtőskalács farcit|Kürtőskalács შიგთავსით|Kürtőskalács միջուկով|İçlikli Kürtőskalács|Kürtőskalács بالحشوة|Kürtőskalács במילוי|Kürtőskalács با مغز|فلنگ والا Kürtőskalács|Kürtőskalács بە پڕکردنەوە|फिलिंग वाला Kürtőskalács|ফিলিং সহ Kürtőskalács|फिलिङ भएको Kürtőskalács|Салмасы бар Kürtőskalács|Ichi to'ldirilgan Kürtőskalács|Ичи толтурулган Kürtőskalács|Kürtőskalács бо пуркунак|Içi doldurylan Kürtőskalács|Дүүргэлттэй Kürtőskalács|夾心 Kürtőskalács|Kürtőskalács có nhân|Kürtőskalács isi|Kürtőskalács สอดไส้|Kürtőskalács na may palaman"),
+    desc: tr("Filled with cream inside|Krémmel töltve|Innen mit Creme gefüllt|С кремом внутри|З кремом усередині|Rellenos de crema|Ripieni di crema|Fourrés à la crème|Z kremem w środku|İçi krema dolgulu|Hundirê wê bi krêmê tijî ye|内填奶油酱|中にクリーム入り|속에 크림이 가득|Recheado com creme por dentro|Van binnen gevuld met crème|Uvnitř plněný krémem|Vnútri plnený krémom|Umplut cu cremă în interior|С крем отвътре|Γεμιστό με κρέμα|Iznutra punjen kremom|Изнутра пуњен кремом|Znotraj polnjen s kremo|Iznutra punjen kremom|Iznutra punjen kremom|I mbushur me krem brenda|Внатре полнет со крем|З крэмам усярэдзіне|Viduje kremas|Iekšpusē pildīts ar krēmu|Seest kreemiga täidetud|Sisällä kermainen täyte|Fylld med kräm inuti|Fylt med krem inni|Fyldt med creme indeni|Fyllt með kremi að innan|Líonta le huachtar istigh|Mimli bil-krema minn ġewwa|Farcit de crema per dins|შიგნით კრემით|Ներսում կրեմով|İçi kremlə doldurulub|محشوة بالكريمة من الداخل|ממולא בקרם מבפנים|داخلش پر از کرم است|اندر کریم بھری ہوئی|ناوەوەی پڕە لە کرێم|अंदर क्रीम भरी हुई|ভেতরে ক্রিম ভরা|भित्र क्रिम भरिएको|Іші кремге толы|Ichi krem bilan to'ldirilgan|Ичи крем менен толтурулган|Дохилаш бо крем пур|Içi krem bilen doldurylan|Дотроо кремтэй|內填奶油醬|Bên trong có nhân kem|Berisi krim di dalamnya|สอดไส้ครีมด้านใน|May cream sa loob") },
+  { id: "ice", kind: "ice", board: "CHIMNEY CAKE WITH ICE CREAM",
+    title: tr("Kürtőskalács with ice cream|Kürtőskalács fagylalttal|Kürtőskalács mit Eis|Kürtőskalács с мороженым|Kürtőskalács з морозивом|Kürtőskalács con helado|Kürtőskalács con gelato|Kürtőskalács avec glace|Kürtőskalács z lodami|Dondurmalı Kürtőskalács|Kürtőskalács bi dondirme|冰淇淋 Kürtőskalács|アイス入り Kürtőskalács|아이스크림 Kürtőskalács|Kürtőskalács com gelado|Kürtőskalács met ijs|Kürtőskalács se zmrzlinou|Kürtőskalács so zmrzlinou|Kürtőskalács cu înghețată|Kürtőskalács със сладолед|Kürtőskalács με παγωτό|Kürtőskalács sa sladoledom|Kürtőskalács са сладоледом|Kürtőskalács s sladoledom|Kürtőskalács sa sladoledom|Kürtőskalács sa sladoledom|Kürtőskalács me akullore|Kürtőskalács со сладолед|Kürtőskalács з марожаным|Kürtőskalács su ledais|Kürtőskalács ar saldējumu|Kürtőskalács jäätisega|Kürtőskalács jäätelöllä|Kürtőskalács med glass|Kürtőskalács med is|Kürtőskalács med is|Kürtőskalács með ís|Kürtőskalács le huachtar reoite|Kürtőskalács bil-ġelat|Kürtőskalács amb gelat|Kürtőskalács ნაყინით|Kürtőskalács պաղպաղակով|Dondurmalı Kürtőskalács|Kürtőskalács مع الآيس كريم|Kürtőskalács עם גלידה|Kürtőskalács با بستنی|آئس کریم کے ساتھ Kürtőskalács|Kürtőskalács لەگەڵ بەستەنی|आइसक्रीम के साथ Kürtőskalács|আইসক্রিম সহ Kürtőskalács|आइसक्रिमसहित Kürtőskalács|Балмұздақпен Kürtőskalács|Muzqaymoqli Kürtőskalács|Балмуздак менен Kürtőskalács|Kürtőskalács бо яхмос|Doňdurmaly Kürtőskalács|Зайрмагтай Kürtőskalács|冰淇淋 Kürtőskalács|Kürtőskalács với kem|Kürtőskalács dengan es krim|Kürtőskalács กับไอศกรีม|Kürtőskalács na may ice cream"),
+    desc: tr("Kürtőskalács cone with soft ice cream|Kürtőskalács tölcsér lágyfagylalttal|Kürtőskalács-Tüte mit Softeis|Рожок из Kürtőskalács с мягким мороженым|Ріжок з Kürtőskalács з м'яким морозивом|Cono de Kürtőskalács con helado suave|Cono di Kürtőskalács con gelato soft|Cornet de Kürtőskalács avec glace italienne|Rożek z Kürtőskalács z lodami włoskimi|Yumuşak dondurmalı Kürtőskalács külahı|Qalibê Kürtőskalács bi dondirmeya nerm|Kürtőskalács 甜筒配软冰淇淋|Kürtőskalács のコーンにソフトクリーム|Kürtőskalács 콘에 소프트 아이스크림|Cone de Kürtőskalács com gelado cremoso|Kürtőskalács-hoorntje met softijs|Kornout z Kürtőskalács s točenou zmrzlinou|Kornútik z Kürtőskalács s točenou zmrzlinou|Cornet de Kürtőskalács cu înghețată la aparat|Фунийка от Kürtőskalács с мек сладолед|Χωνάκι Kürtőskalács με μαλακό παγωτό|Kornet od Kürtőskalács s mekim sladoledom|Корнет од Kürtőskalács са меким сладоледом|Kornet iz Kürtőskalács z mehkim sladoledom|Kornet od Kürtőskalács s mekim sladoledom|Kornet od Kürtőskalács sa mekim sladoledom|Kon Kürtőskalács me akullore të butë|Корнет од Kürtőskalács со мек сладолед|Ражок з Kürtőskalács з мяккім марожаным|Kürtőskalács rageliai su minkštais ledais|Kürtőskalács radziņš ar mīksto saldējumu|Kürtőskalács-vahvlitorbik pehme jäätisega|Kürtőskalács-tötterö pehmisjäätelöllä|Kürtőskalács-strut med mjukglass|Kürtőskalács-kjeks med softis|Kürtőskalács-vaffel med softice|Kürtőskalács-form með mjúkum ís|Cón Kürtőskalács le huachtar reoite bog|Kon tal-Kürtőskalács bil-ġelat artab|Cucurutxo de Kürtőskalács amb gelat suau|Kürtőskalács-ის რქა რბილი ნაყინით|Kürtőskalács-ի եղջյուր փափուկ պաղպաղակով|Yumşaq dondurmalı Kürtőskalács qıfı|مخروط Kürtőskalács مع آيس كريم طري|גביע Kürtőskalács עם גלידה אמריקאית|قیف Kürtőskalács با بستنی قیفی نرم|نرم آئس کریم کے ساتھ Kürtőskalács کون|قوچەکی Kürtőskalács لەگەڵ بەستەنی نەرم|सॉफ्ट आइसक्रीम के साथ Kürtőskalács कोन|নরম আইসক্রিম সহ Kürtőskalács কোন|नरम आइसक्रिमसहित Kürtőskalács कोन|Жұмсақ балмұздақпен Kürtőskalács конусы|Yumshoq muzqaymoqli Kürtőskalács konusi|Жумшак балмуздак менен Kürtőskalács конусу|Конуси Kürtőskalács бо яхмоси нарм|Ýumşak doňdurmaly Kürtőskalács konusy|Зөөлөн зайрмагтай Kürtőskalács конус|Kürtőskalács 甜筒配霜淇淋|Ốc quế Kürtőskalács với kem tươi mềm|Cone Kürtőskalács dengan es krim lembut|โคน Kürtőskalács กับซอฟต์ครีม|Kürtőskalács cone na may soft ice cream") },
+  { id: "waffle", kind: "waffle", board: "BUBBLE WAFFLES",
+    title: tr("Bubble waffles|Buborékgofri|Bubble Waffeln|Бабл-вафли|Бабл-вафлі|Gofres burbuja|Bubble waffle|Gaufres bulles|Gofry bąbelkowe|Bubble waffle|Bubble waffle|泡泡华夫|バブルワッフル|버블 와플|Waffles bolha|Bubble wafels|Bublinkové vafle|Bublinkové wafle|Vafe cu bule|Бъбъл гофрети|Bubble βάφλες|Bubble vafli|Bubble вафли|Bubble vaflji|Bubble vafli|Bubble vafli|Vafla me flluska|Bubble вафли|Бабл-вафлі|Burbuliniai vafliai|Burbuļvafeles|Mullivahvlid|Kuplavohvelit|Bubbelvåfflor|Boblevafler|Boblevafler|Kúluvöfflur|Vaiféil bhoilgíní|Waffles bil-bżieżaq|Gofres bombolla|ბუშტოვანი ვაფლები|Պղպջակավոր վաֆլիներ|Qabarcıq vaflilər|وافل الفقاعات|וופל בועות|وافل حبابی|ببل وافلز|وافڵی بڵقدار|बबल वफ़ल|বাবল ওয়াফল|बबल वाफल|Бабл-вафлилер|Bubble vaflilar|Бабл-вафлилер|Бабл-вафлиҳо|Bubble waflileri|Бөмбөлөгт вафли|泡泡鬆餅|Bánh waffle bong bóng|Wafel gelembung|บับเบิ้ลวาฟเฟิล|Bubble waffles"),
+    desc: null },
+  { id: "crepe", kind: "crepe", board: "CREPES",
+    title: tr("Crepes|Palacsinta|Crêpes|Блины|Млинці|Crepes|Crêpes|Crêpes|Naleśniki|Krep|Krep|可丽饼|クレープ|크레페|Crepes|Crêpes|Palačinky|Palacinky|Clătite|Палачинки|Κρέπες|Palačinke|Палачинке|Palačinke|Palačinke|Palačinke|Krepa|Палачинки|Бліны|Blynai|Pankūkas|Pannkoogid|Ohukaiset|Crêpes|Pannekaker|Pandekager|Pönnukökur|Pancóga|Crêpes|Creps|ბლინები|Բլիթներ|Blinçiklər|كريب|קרפים|کرپ|کریپس|کرێپ|क्रेप|ক্রেপ|क्रेप|Құймақтар|Blinchiklar|Куймактар|Блинҳо|Blinler|Блин|可麗餅|Bánh crêpe|Crepes|เครป|Crepes"),
+    desc: null },
+  { id: "extra", kind: "extra", board: "EXTRA",
+    title: tr("Extras|Extrák|Extras|Дополнительно|Додатково|Extras|Extra|Suppléments|Dodatki|Ekstralar|Zêde|加料|追加|추가|Extras|Extra's|Extra|Extra|Extra|Добавки|Έξτρα|Dodaci|Додаци|Dodatki|Dodaci|Dodaci|Shtesa|Додатоци|Дадаткова|Priedai|Papildus|Lisad|Lisät|Tillägg|Tillegg|Tilkøb|Aukalega|Breiseáin|Żidiet|Extres|დამატებით|Լրացուցիչ|Əlavələr|إضافات|תוספות|افزودنی‌ها|اضافی|زیادە|अतिरिक्त|অতিরিক্ত|थप|Қосымша|Qo'shimchalar|Кошумча|Иловагӣ|Goşmaçalar|Нэмэлт|加點|Thêm|Tambahan|เพิ่มเติม|Dagdag"),
+    desc: null }
+];
+
+const words = {
+  vanilla: tr("Vanilla|Vanília|Vanille|Ваниль|Ваніль|Vainilla|Vaniglia|Vanille|Wanilia|Vanilya|Vanîl|香草|バニラ|바닐라|Baunilha|Vanille|Vanilka|Vanilka|Vanilie|Ванилия|Βανίλια|Vanilija|Ванила|Vanilija|Vanilija|Vanila|Vanilje|Ванила|Ваніль|Vanilė|Vaniļa|Vanill|Vanilja|Vanilj|Vanilje|Vanilje|Vanilla|Fanaile|Vanilla|Vainilla|ვანილი|Վանիլ|Vanil|فانيليا|וניל|وانیل|ونیلا|ڤانێلا|वनीला|ভ্যানিলা|भनिला|Ваниль|Vanil|Ваниль|Ваниль|Wanil|Ваниль|香草|Vani|Vanila|วานิลลา|Vanilla"),
+  cinnamon: tr("Cinnamon|Fahéj|Zimt|Корица|Кориця|Canela|Cannella|Cannelle|Cynamon|Tarçın|Darçîn|肉桂|シナモン|시나몬|Canela|Kaneel|Skořice|Škorica|Scorțișoară|Канела|Κανέλα|Cimet|Цимет|Cimet|Cimet|Cimet|Kanellë|Цимет|Карыца|Cinamonas|Kanēlis|Kaneel|Kaneli|Kanel|Kanel|Kanel|Kanill|Cainéal|Kannella|Canyella|დარიჩინი|Դարչին|Darçın|قرفة|קינמון|دارچین|دارچینی|دارچین|दालचीनी|দারুচিনি|दालचिनी|Даршын|Doljin|Корица|Дорчин|Darçyn|Шанцай|肉桂|Quế|Kayu manis|อบเชย|Kanela"),
+  coconut: tr("Coconut|Kókusz|Kokos|Кокос|Кокос|Coco|Cocco|Noix de coco|Kokos|Hindistan cevizi|Gûza hindî|椰子|ココナッツ|코코넛|Coco|Kokos|Kokos|Kokos|Cocos|Кокос|Καρύδα|Kokos|Кокос|Kokos|Kokos|Kokos|Arrë kokosi|Кокос|Какос|Kokosas|Kokosrieksts|Kookos|Kookos|Kokos|Kokos|Kokos|Kókos|Cnó cócó|Ġewż tal-Indi|Coco|ქოქოსი|Կոկոս|Kokos|جوز الهند|קוקוס|نارگیل|ناریل|گوێزی هیندی|नारियल|নারকেল|नरिवल|Кокос|Kokos|Кокос|Кокос|Kokos|Наргил|椰子|Dừa|Kelapa|มะพร้าว|Niyog"),
+  walnut: tr("Walnut|Dió|Walnuss|Грецкий орех|Волоський горіх|Nuez|Noce|Noix|Orzech włoski|Ceviz|Gûz|核桃|クルミ|호두|Noz|Walnoot|Vlašský ořech|Vlašský orech|Nucă|Орех|Καρύδι|Orah|Орах|Oreh|Orah|Orah|Arrë|Орев|Грэцкі арэх|Graikinis riešutas|Valrieksts|Kreeka pähkel|Saksanpähkinä|Valnöt|Valnøtt|Valnød|Valhneta|Gallchnó|Ġewż|Nou|კაკალი|Ընկույզ|Qoz|جوز|אגוז מלך|گردو|اخروٹ|گوێز|अखरोट|আখরোট|ओखर|Грек жаңғағы|Yong'oq|Жаңгак|Чормағз|Hoz|Хушга|核桃|Óc chó|Kenari|วอลนัท|Walnut"),
+  biscoff: tr("Biscoff®"),
+  pistachio: tr("Pistachio|Pisztácia|Pistazie|Фисташка|Фісташка|Pistacho|Pistacchio|Pistache|Pistacja|Antep fıstığı|Fistiq|开心果|ピスタチオ|피스타치오|Pistácio|Pistache|Pistácie|Pistácia|Fistic|Шам фъстък|Φιστίκι|Pistacija|Пистаћ|Pistacija|Pistacija|Pistać|Fëstëk|Пистаќ|Фісташка|Pistacija|Pistācija|Pistaatsia|Pistaasi|Pistage|Pistasj|Pistacie|Pistasía|Piostáise|Pistaċċi|Festuc|ფისტა|Պիստակ|Püstə|فستق|פיסטוק|پسته|پستہ|فستق|पिस्ता|পেস্তা|पिस्ता|Пісте|Pista|Мисте|Писта|Pisse|Пистакио|開心果|Hạt dẻ cười|Pistachio|พิสตาชิโอ|Pistachio"),
+  raspberry: tr("Raspberry|Málna|Himbeere|Малина|Малина|Frambuesa|Lampone|Framboise|Malina|Ahududu|Tûya sor|覆盆子|ラズベリー|라즈베리|Framboesa|Framboos|Malina|Malina|Zmeură|Малина|Βατόμουρο|Malina|Малина|Malina|Malina|Malina|Mjedër|Малина|Маліна|Avietė|Avene|Vaarikas|Vadelma|Hallon|Bringebær|Hindbær|Hindber|Sú craobh|Lampun|Gerd|ჟოლო|Ազնվամորի|Moruq|توت العليق|פטל|تمشک|رس بھری|تووتڕک|रसभरी|রাস্পবেরি|रास्पबेरी|Таңқурай|Malina|Малина|Тамашк|Malina|Бөөрөлзгөнө|覆盆子|Mâm xôi|Raspberry|ราสเบอร์รี่|Raspberry"),
+  oreo: tr("Oreo®"),
+  nutella: tr("Nutella®"),
+  mms: tr("M&M's®"),
+  hazelnut: tr("Hazelnut|Mogyoró|Haselnuss|Фундук|Фундук|Avellana|Nocciola|Noisette|Orzech laskowy|Fındık|Bindeq|榛子|ヘーゼルナッツ|헤이즐넛|Avelã|Hazelnoot|Lískový oříšek|Lieskový oriešok|Alune de pădure|Лешник|Φουντούκι|Lješnjak|Лешник|Lešnik|Lješnjak|Lješnik|Lajthi|Лешник|Лясны арэх|Lazdyno riešutas|Lazdu rieksts|Sarapuupähkel|Hasselpähkinä|Hasselnöt|Hasselnøtt|Hasselnød|Heslihneta|Cnó coill|Ġellewż|Avellana|თხილი|Պնդուկ|Fındıq|بندق|אגוז לוז|فندق|ہیزل نٹ|بندق|हेज़लनट|হ্যাজেলনাট|हेजलनट|Орман жаңғағы|Findiq|Токой жаңгагы|Фундуқ|Fundük|Самар|榛果|Hạt phỉ|Hazelnut|เฮเซลนัท|Hazelnut"),
+  caramel: tr("Caramel|Karamell|Karamell|Карамель|Карамель|Caramelo|Caramello|Caramel|Karmel|Karamel|Karamel|焦糖|キャラメル|캐러멜|Caramelo|Karamel|Karamel|Karamel|Caramel|Карамел|Καραμέλα|Karamel|Карамел|Karamela|Karamel|Karamel|Karamel|Карамел|Карамель|Karamelė|Karamele|Karamell|Kinuski|Kola|Karamell|Karamel|Karamella|Caramal|Karamell|Caramel|კარამელი|Կարամել|Karamel|كراميل|קרמל|کارامل|کیریمل|کارامێل|कैरेमल|ক্যারামেল|क्यारामेल|Карамель|Karamel|Карамель|Карамел|Karamel|Карамель|焦糖|Caramel|Karamel|คาราเมล|Caramel"),
+  white_choc: tr("White chocolate|Fehér csokoládé|Weiße Schokolade|Белый шоколад|Білий шоколад|Chocolate blanco|Cioccolato bianco|Chocolat blanc|Biała czekolada|Beyaz çikolata|Çikolata spî|白巧克力|ホワイトチョコレート|화이트 초콜릿|Chocolate branco|Witte chocolade|Bílá čokoláda|Biela čokoláda|Ciocolată albă|Бял шоколад|Λευκή σοκολάτα|Bijela čokolada|Бела чоколада|Bela čokolada|Bijela čokolada|Bijela čokolada|Çokollatë e bardhë|Бело чоколадо|Белы шакалад|Baltasis šokoladas|Baltā šokolāde|Valge šokolaad|Valkosuklaa|Vit choklad|Hvit sjokolade|Hvid chokolade|Hvítt súkkulaði|Seacláid bhán|Ċikkulata bajda|Xocolata blanca|თეთრი შოკოლადი|Սպիտակ շոկոլադ|Ağ şokolad|شوكولاتة بيضاء|שוקולד לבן|شکلات سفید|سفید چاکلیٹ|شوکولاتەی سپی|व्हाइट चॉकलेट|হোয়াইট চকলেট|सेतो चकलेट|Ақ шоколад|Oq shokolad|Ак шоколад|Шоколади сафед|Ak şokolad|Цагаан шоколад|白巧克力|Sô cô la trắng|Cokelat putih|ไวท์ช็อกโกแลต|White chocolate"),
+  mango: tr("Mango|Mangó|Mango|Манго|Манго|Mango|Mango|Mangue|Mango|Mango|Mango|芒果|マンゴー|망고|Manga|Mango|Mango|Mango|Mango|Манго|Μάνγκο|Mango|Манго|Mango|Mango|Mango|Mango|Манго|Манга|Mangas|Mango|Mango|Mango|Mango|Mango|Mango|Mangó|Mangó|Mango|Mango|მანგო|Մանգո|Manqo|مانجو|מנגו|انبه|آم|مانگۆ|आम|আম|आँप|Манго|Mango|Манго|Манго|Mango|Манго|芒果|Xoài|Mangga|มะม่วง|Mangga"),
+  strawberry: tr("Strawberry|Eper|Erdbeere|Клубника|Полуниця|Fresa|Fragola|Fraise|Truskawka|Çilek|Tûfirengî|草莓|いちご|딸기|Morango|Aardbei|Jahoda|Jahoda|Căpșuni|Ягода|Φράουλα|Jagoda|Јагода|Jagoda|Jagoda|Jagoda|Luleshtrydhe|Јагода|Клубніца|Braškė|Zemene|Maasikas|Mansikka|Jordgubbe|Jordbær|Jordbær|Jarðarber|Sú talún|Frawli|Maduixa|მარწყვი|Ելակ|Çiyələk|فراولة|תות|توت‌فرنگی|اسٹرابیری|تووفەرەنگی|स्ट्रॉबेरी|স্ট্রবেরি|स्ट्रबेरी|Құлпынай|Qulupnay|Кулпунай|Қулфинай|Ýertudana|Гүзээлзгэнэ|草莓|Dâu tây|Stroberi|สตรอว์เบอร์รี่|Strawberry"),
+  cherry: tr("Cherry|Cseresznye|Kirsche|Вишня|Вишня|Cereza|Ciliegia|Cerise|Wiśnia|Kiraz|Gêlaz|樱桃|チェリー|체리|Cereja|Kers|Třešeň|Čerešňa|Cireșe|Череша|Κεράσι|Trešnja|Трешња|Češnja|Trešnja|Trešnja|Qershi|Цреша|Вішня|Vyšnia|Ķirsis|Kirss|Kirsikka|Körsbär|Kirsebær|Kirsebær|Kirsuber|Silín|Ċirasa|Cirera|ალუბალი|Բալ|Albalı|كرز|דובדבן|گیلاس|چیری|گێلاس|चेरी|চেরি|चेरी|Шие|Olcha|Чие|Олуболу|Ülje|Интоор|櫻桃|Anh đào|Ceri|เชอร์รี่|Cherry"),
+  ice_cream: tr("Ice cream|Fagylalt|Eis|Мороженое|Морозиво|Helado|Gelato|Glace|Lody|Dondurma|Dondirme|冰淇淋|アイスクリーム|아이스크림|Gelado|IJs|Zmrzlina|Zmrzlina|Înghețată|Сладолед|Παγωτό|Sladoled|Сладолед|Sladoled|Sladoled|Sladoled|Akullore|Сладолед|Марожанае|Ledai|Saldējums|Jäätis|Jäätelö|Glass|Is|Is|Ís|Uachtar reoite|Ġelat|Gelat|ნაყინი|Պաղպաղակ|Dondurma|آيس كريم|גלידה|بستنی|آئس کریم|بەستەنی|आइसक्रीम|আইসক্রিম|आइसक्रिम|Балмұздақ|Muzqaymoq|Балмуздак|Яхмос|Doňdurma|Зайрмаг|冰淇淋|Kem|Es krim|ไอศกรีม|Ice cream"),
+  whipped: tr("Whipped cream|Tejszínhab|Schlagsahne|Взбитые сливки|Збиті вершки|Nata montada|Panna montata|Chantilly|Bita śmietana|Krem şanti|Krêma kefkirî|鲜奶油|ホイップクリーム|휘핑크림|Chantili|Slagroom|Šlehačka|Šľahačka|Frișcă|Сметана|Σαντιγί|Šlag|Шлаг|Stepena smetana|Šlag|Šlag|Krem i rrahur|Шлаг|Узбітыя сліўкі|Plakta grietinėlė|Putukrējums|Vahukoor|Kermavaahto|Vispgrädde|Krem|Flødeskum|Þeyttur rjómi|Uachtar coipthe|Krema mħabbta|Nata muntada|ათქვეფილი ნაღები|Հարած սերուցք|Çalınmış qaymaq|كريمة مخفوقة|קצפת|خامه زده‌شده|وہپڈ کریم|کرێمی کوتراو|व्हिप्ड क्रीम|হুইপড ক্রিম|व्हिप्ड क्रिम|Көпіртілген кілегей|Ko'pirtirilgan qaymoq|Көбүртүлгөн каймак|Қаймоқи кӯфта|Çalnan kaýmak|Хөөсөрүүлсэн цөцгий|鮮奶油|Kem tươi đánh bông|Krim kocok|วิปครีม|Whipped cream"),
+  banana: tr("Banana|Banán|Banane|Банан|Банан|Plátano|Banana|Banane|Banan|Muz|Mûz|香蕉|バナナ|바나나|Banana|Banaan|Banán|Banán|Banană|Банан|Μπανάνα|Banana|Банана|Banana|Banana|Banana|Banane|Банана|Банан|Bananas|Banāns|Banaan|Banaani|Banan|Banan|Banan|Banani|Banana|Banana|Plàtan|ბანანი|Բանան|Banan|موز|בננה|موز|کیلا|مۆز|केला|কলা|केरा|Банан|Banan|Банан|Банан|Banan|Гадил|香蕉|Chuối|Pisang|กล้วย|Saging"),
+  sprinkles: tr("Sprinkles|Cukorszórás|Zuckerstreusel|Посыпка|Посипка|Fideos de colores|Codette colorate|Vermicelles|Posypka|Renkli şeker|Xemla şekirî|彩针糖|カラースプレー|스프링클|Granulado|Hagelslag|Barevné posypky|Farebné posýpky|Ornamente colorate|Цветни пръчици|Τρούφα|Mrvice u boji|Шарене мрвице|Barvni posip|Šarene mrvice|Šarene mrvice|Spërkatje me ngjyra|Шарени мрвки|Пасыпка|Spalvoti pabarstukai|Krāsainas kaisāmās|Värvilised suhkrupuistad|Nonparelli|Strössel|Strøssel|Krymmel|Kökuskraut|Spréiteoga|Kuluri taz-zokkor|Fideus de colors|ფერადი მოსაყრელი|Գունավոր ցան|Rəngli səpmə|حبيبات ملونة|סוכריות צבעוניות|ترافل رنگی|رنگین اسپرنکلز|ڕەنگاڵەی شەکر|रंगीन स्प्रिंकल्स|রঙিন স্প্রিংকলস|रङ्गीन स्प्रिंकल्स|Түрлі түсті себу|Rangli sepma|Түстүү себилме|Пошиши рангин|Reňkli sepme|Өнгөт цацлага|彩色糖針|Cốm màu|Meses warna-warni|เม็ดน้ำตาลสี|Sprinkles"),
+  pist_cream: tr("Pistachio cream|Pisztáciakrém|Pistaziencreme|Фисташковый крем|Фісташковий крем|Crema de pistacho|Crema di pistacchio|Crème de pistache|Krem pistacjowy|Fıstık kreması|Krêma fistiqê|开心果酱|ピスタチオクリーム|피스타치오 크림|Creme de pistácio|Pistachecrème|Pistáciový krém|Pistáciový krém|Cremă de fistic|Крем от шам фъстък|Κρέμα φιστικιού|Krema od pistacije|Крем од пистаћа|Pistacijeva krema|Krem od pistacije|Krem od pistaća|Krem fëstëku|Крем од пистаќ|Фісташкавы крэм|Pistacijų kremas|Pistāciju krēms|Pistaatsiakreem|Pistaasivoide|Pistagekräm|Pistasjkrem|Pistaciecreme|Pistasíukrem|Uachtar piostáise|Krema tal-pistaċċi|Crema de festuc|ფისტის კრემი|Պիստակի կրեմ|Püstə kremi|كريمة الفستق|קרם פיסטוק|کرم پسته|پستہ کریم|کرێمی فستق|पिस्ता क्रीम|পেস্তা ক্রিম|पिस्ता क्रिम|Пісте кремі|Pista kremi|Мисте креми|Креми писта|Pisse kremi|Пистакио крем|開心果醬|Kem hạt dẻ cười|Krim pistachio|ครีมพิสตาชิโอ|Pistachio cream"),
+  hazel_cream: tr("Hazelnut cream|Mogyorókrém|Haselnusscreme|Крем из фундука|Крем з фундука|Crema de avellana|Crema di nocciole|Crème de noisette|Krem z orzechów laskowych|Fındık kreması|Krêma bindeqê|榛子酱|ヘーゼルナッツクリーム|헤이즐넛 크림|Creme de avelã|Hazelnootcrème|Lískooříškový krém|Lieskovoorieškový krém|Cremă de alune|Крем от лешници|Κρέμα φουντουκιού|Krema od lješnjaka|Крем од лешника|Lešnikova krema|Krem od lješnjaka|Krem od lješnika|Krem lajthie|Крем од лешник|Арэхавы крэм|Lazdyno riešutų kremas|Lazdu riekstu krēms|Sarapuupähklikreem|Hasselpähkinävoide|Hasselnötskräm|Hasselnøttkrem|Hasselnøddecreme|Heslihnetukrem|Uachtar cnó coill|Krema tal-ġellewż|Crema d'avellana|თხილის კრემი|Պնդուկի կրեմ|Fındıq kremi|كريمة البندق|קרם אגוזי לוז|کرم فندق|ہیزل نٹ کریم|کرێمی بندق|हेज़लनट क्रीम|হ্যাজেলনাট ক্রিম|हेजलनट क्रिम|Жаңғақ кремі|Findiq kremi|Жаңгак креми|Креми фундуқ|Fundük kremi|Самрын крем|榛果醬|Kem hạt phỉ|Krim hazelnut|ครีมเฮเซลนัท|Hazelnut cream"),
+  caramel_cream: tr("Caramel cream|Karamellkrém|Karamellcreme|Карамельный крем|Карамельний крем|Crema de caramelo|Crema al caramello|Crème au caramel|Krem karmelowy|Karamel kreması|Krêma karamelê|焦糖酱|キャラメルクリーム|캐러멜 크림|Creme de caramelo|Karamelcrème|Karamelový krém|Karamelový krém|Cremă de caramel|Карамелен крем|Κρέμα καραμέλας|Krema od karamela|Крем од карамела|Karamelna krema|Krem od karamela|Krem od karamela|Krem karameli|Крем од карамел|Карамельны крэм|Karamelės kremas|Karameles krēms|Karamellikreem|Kinuskivoide|Kolakräm|Karamellkrem|Karamelcreme|Karamellukrem|Uachtar caramail|Krema tal-karamell|Crema de caramel|კარამელის კრემი|Կարամելային կրեմ|Karamel kremi|كريمة الكراميل|קרם קרמל|کرم کارامل|کیریمل کریم|کرێمی کارامێل|कैरेमल क्रीम|ক্যারামেল ক্রিম|क्यारामेल क्रिम|Карамель кремі|Karamel kremi|Карамель креми|Креми карамел|Karamel kremi|Карамель крем|焦糖醬|Kem caramel|Krim karamel|ครีมคาราเมล|Caramel cream"),
+  extra_ice: tr("Extra ice cream|Extra fagylalt|Extra Eis|Extra мороженое|Додаткове морозиво|Helado extra|Gelato extra|Supplément glace|Dodatkowe lody|Ekstra dondurma|Dondirmeya zêde|加冰淇淋|アイス追加|아이스크림 추가|Gelado extra|Extra ijs|Zmrzlina navíc|Zmrzlina navyše|Înghețată în plus|Допълнителен сладолед|Έξτρα παγωτό|Dodatni sladoled|Додатни сладолед|Dodaten sladoled|Dodatni sladoled|Dodatni sladoled|Akullore shtesë|Дополнителен сладолед|Дадатковае марожанае|Papildomi ledai|Papildu saldējums|Lisajäätis|Lisäjäätelö|Extra glass|Ekstra is|Ekstra is|Auka ís|Uachtar reoite breise|Ġelat żejjed|Gelat extra|დამატებითი ნაყინი|Լրացուցիչ պաղպաղակ|Əlavə dondurma|آيس كريم إضافي|תוספת גלידה|بستنی اضافه|اضافی آئس کریم|بەستەنی زیادە|अतिरिक्त आइसक्रीम|অতিরিক্ত আইসক্রিম|थप आइसक्रिम|Қосымша балмұздақ|Qo'shimcha muzqaymoq|Кошумча балмуздак|Яхмоси иловагӣ|Goşmaça doňdurma|Нэмэлт зайрмаг|加冰淇淋|Thêm kem|Tambahan es krim|เพิ่มไอศกรีม|Dagdag na ice cream"),
+  extra_fruit: tr("Extra fruit|Extra gyümölcs|Extra Obst|Extra фрукты|Додаткові фрукти|Fruta extra|Frutta extra|Supplément fruits|Dodatkowe owoce|Ekstra meyve|Fêkiyên zêde|加水果|フルーツ追加|과일 추가|Fruta extra|Extra fruit|Ovoce navíc|Ovocie navyše|Fructe în plus|Допълнителни плодове|Έξτρα φρούτα|Dodatno voće|Додатно воће|Dodatno sadje|Dodatno voće|Dodatno voće|Fruta shtesë|Дополнително овошје|Дадатковая садавіна|Papildomi vaisiai|Papildu augļi|Lisapuuvili|Lisähedelmät|Extra frukt|Ekstra frukt|Ekstra frugt|Aukaávextir|Torthaí breise|Frott żejjed|Fruita extra|დამატებითი ხილი|Լրացուցիչ մրգեր|Əlavə meyvə|فواكه إضافية|תוספת פירות|میوه اضافه|اضافی پھل|میوەی زیادە|अतिरिक्त फल|অতিরিক্ত ফল|थप फलफूल|Қосымша жемістер|Qo'shimcha meva|Кошумча жемиштер|Меваи иловагӣ|Goşmaça miwe|Нэмэлт жимс|加水果|Thêm trái cây|Tambahan buah|เพิ่มผลไม้|Dagdag na prutas")
+};
+
+const colors = {
+  vanilla: "#f2dfa7", cinnamon: "#a8652f", coconut: "#f4f1ea", walnut: "#8b5e3c", biscoff: "#c47f3e",
+  pistachio: "#9bc25b", raspberry: "#d63a6e", oreo: "#3a3846", nutella: "#5b3420", hazelnut: "#a26b3c",
+  caramel: "#d9952f", white_choc: "#f3e7d0", mango: "#ffb02e", strawberry: "#ff5f7e", cherry: "#b4203c",
+  mms: "#e94b3c", extra_ice: "#f6eedf", extra_fruit: "#ff5f7e"
+};
+
+const items = [
+  { n: 1, cat: "coat", f: "vanilla", img: "img/coat-vanilla.webp", price: 2400 },
+  { n: 2, cat: "coat", f: "cinnamon", img: "img/coat-cinnamon.webp", price: 2400 },
+  { n: 3, cat: "coat", f: "coconut", img: "img/coat-coconut.webp", price: 2400 },
+  { n: 4, cat: "coat", f: "walnut", img: "img/coat-walnut.webp", price: 2400 },
+  { n: 5, cat: "coat", f: "biscoff", img: "img/coat-biscoff.webp", price: 2800 },
+  { n: 6, cat: "coat", f: "pistachio", img: "img/coat-pistachio.webp", price: 2800 },
+  { n: 7, cat: "coat", f: "raspberry", img: "img/coat-raspberry.webp", price: 2800 },
+  { n: 8, cat: "coat", f: "oreo", img: "img/coat-oreo.webp", price: 2800 },
+  { n: 9, cat: "fill", f: "nutella", img: "img/fill-nutella.webp", price: 3200 },
+  { n: 10, cat: "fill", f: "pistachio", img: "img/fill-pistachio.webp", price: 3300 },
+  { n: 11, cat: "fill", f: "hazelnut", img: "img/fill-hazelnut.webp", price: 3100 },
+  { n: 12, cat: "fill", f: "biscoff", img: "img/fill-biscoff.webp", price: 3200 },
+  { n: 13, cat: "fill", f: "caramel", img: "img/fill-caramel.webp", price: 3100 },
+  { n: 14, cat: "fill", f: "white_choc", img: "img/fill-white_choc.webp", price: 3100 },
+  { n: 15, cat: "ice", f: "nutella", img: "img/ice-nutella.webp", price: 3700 },
+  { n: 16, cat: "ice", f: "pistachio", img: "img/ice-pistachio.webp", price: 3800 },
+  { n: 17, cat: "ice", f: "biscoff", img: "img/ice-biscoff.webp", price: 3700 },
+  { n: 18, cat: "ice", f: "caramel", img: "img/ice-caramel.webp", price: 3500 },
+  { n: 19, cat: "ice", f: "white_choc", price: 3500 },
+  { n: 20, cat: "ice", f: "hazelnut", img: "img/ice-hazelnut.webp", price: 3500 },
+  { n: 21, cat: "ice", f: "strawberry", img: "img/ice-strawberry.webp", price: 3400 },
+  { n: 22, cat: "ice", f: "mango", img: "img/ice-mango.webp", price: 3400 },
+  { n: 23, cat: "ice", f: "cherry", img: "img/ice-cherry.webp", price: 3400 },
+  { n: 24, cat: "waffle", name: "Special Bubble", c: "strawberry", ing: ["ice_cream", "nutella", "strawberry", "banana", "sprinkles"], img: "img/waffle-special_bubble.webp", price: 3600 },
+  { n: 25, cat: "waffle", name: "Strawberry Love", c: "strawberry", ing: ["whipped", "strawberry", "nutella", "sprinkles"], img: "img/waffle-strawberry_love.webp", price: 3000 },
+  { n: 26, cat: "waffle", name: "Oreo Party", c: "oreo", ing: ["oreo", "nutella", "whipped", "sprinkles"], img: "img/waffle-oreo_party.webp", price: 2800 },
+  { n: 27, cat: "waffle", name: "M&M's Bubble", c: "mms", ing: ["mms", "whipped", "nutella", "sprinkles"], img: "img/waffle-mms_bubble.webp", price: 2800 },
+  { n: 28, cat: "waffle", name: "Basic Waffle", c: "nutella", ing: ["whipped", "nutella", "sprinkles"], img: "img/waffle-basic_waffle.webp", price: 2500 },
+  { n: 29, cat: "waffle", name: "Pistachio Dream", c: "pistachio", ing: ["pist_cream", "whipped", "sprinkles"], img: "img/waffle-pistachio_dream.webp", price: 3200 },
+  { n: 30, cat: "crepe", f: "nutella", ing: ["strawberry", "banana", "nutella", "sprinkles", "whipped"], img: "img/crepe-nutella.webp", price: 3400 },
+  { n: 31, cat: "crepe", f: "pistachio", ing: ["pist_cream", "pistachio", "sprinkles", "whipped"], img: "img/crepe-pistachio.webp", price: 3500 },
+  { n: 32, cat: "crepe", f: "hazelnut", ing: ["hazel_cream", "hazelnut", "sprinkles", "whipped"], img: "img/crepe-hazelnut.webp", price: 3000 },
+  { n: 33, cat: "crepe", f: "caramel", ing: ["caramel_cream", "sprinkles", "whipped"], img: "img/crepe-caramel.webp", price: 3000 },
+  { n: 34, cat: "extra", f: "extra_ice", price: 800 },
+  { n: 35, cat: "extra", f: "extra_fruit", price: 800 }
+];
+
+const hex_rgb = h => { const v = parseInt(h.slice(1), 16); return [v >> 16, v >> 8 & 255, v & 255]; };
+const shade = (h, k) => {
+  const f = v => Math.round(k < 0 ? v * (1 + k) : v + (255 - v) * k);
+  return `rgb(${hex_rgb(h).map(f).join(",")})`;
+};
+const rgba = (h, a) => `rgba(${hex_rgb(h).join(",")},${a})`;
+const dough = "#d99550";
+const dough_dark = "#a8662c";
+
+function dots(c, x0, y0, w, h, count) {
+  let s = "";
+  for (let i = 0; i < count; i++) {
+    const x = x0 + (i * 37 % w);
+    const y = y0 + (i * 53 % h);
+    s += `<circle cx="${x}" cy="${y}" r="1.3" fill="${shade(c, i % 2 ? .4 : -.35)}"/>`;
+  }
+  return s;
+}
+
+function spiral(x1, x2, y0, y1, color) {
+  let s = "";
+  for (let y = y0; y < y1; y += 11) s += `<path d="M${x1} ${y + 8} Q50 ${y + 2} ${x2} ${y - 2}" stroke="${color}" stroke-width="3" fill="none" opacity=".6" stroke-linecap="round"/>`;
+  return s;
+}
+
+function art(kind, c, f) {
+  const shadow = `<ellipse cx="50" cy="93" rx="24" ry="4" fill="#000" opacity=".35"/>`;
+  if (kind === "coat") return `<svg viewBox="0 0 100 100">${shadow}
+    <rect x="33" y="12" width="34" height="79" rx="7" fill="${c}"/>
+    ${spiral(33, 67, 14, 88, shade(c, -.3))}
+    ${dots(c, 35, 16, 30, 72, 26)}
+    <ellipse cx="50" cy="13" rx="15" ry="3.6" fill="#3a2414"/>
+    <rect x="37" y="17" width="5" height="68" rx="2.5" fill="#fff" opacity=".16"/></svg>`;
+  if (kind === "fill") return `<svg viewBox="0 0 100 100">${shadow}
+    <rect x="33" y="16" width="34" height="75" rx="7" fill="#e3a35e"/>
+    ${spiral(33, 67, 18, 88, dough_dark)}
+    ${dots("#e3a35e", 35, 20, 30, 68, 18)}
+    <path d="M34 17 Q50 -1 66 17 Z" fill="${c}"/>
+    <path d="M60 17 Q62 28 59 32 Q56 28 57 17 Z" fill="${c}"/>
+    <path d="M40 10 Q46 6 52 8" stroke="#fff" stroke-width="2" fill="none" opacity=".35" stroke-linecap="round"/>
+    <rect x="37" y="22" width="5" height="64" rx="2.5" fill="#fff" opacity=".16"/></svg>`;
+  if (kind === "ice") return `<svg viewBox="0 0 100 100">${shadow}
+    <path d="M29 48 L71 48 L59 93 L41 93 Z" fill="${dough}"/>
+    <clipPath id="cc-${f}"><path d="M29 48 L71 48 L59 93 L41 93 Z"/></clipPath>
+    <g clip-path="url(#cc-${f})">${spiral(25, 75, 50, 95, dough_dark)}${dots(dough, 32, 50, 36, 42, 14)}</g>
+    <ellipse cx="50" cy="47" rx="24" ry="7.5" fill="${shade(c, -.12)}"/>
+    <ellipse cx="50" cy="38" rx="19.5" ry="7.5" fill="${c}"/>
+    <ellipse cx="50" cy="29" rx="14.5" ry="6.5" fill="${shade(c, .08)}"/>
+    <ellipse cx="50" cy="21" rx="9.5" ry="5.5" fill="${shade(c, .15)}"/>
+    <path d="M45 18 Q51 4 56 17 Z" fill="${shade(c, .2)}"/>
+    <path d="M38 36 Q42 32 47 33" stroke="#fff" stroke-width="2" fill="none" opacity=".4" stroke-linecap="round"/></svg>`;
+  if (kind === "waffle") {
+    let b = "";
+    const rows = [[60, 5], [51, 5], [42, 4], [33, 3]];
+    rows.forEach(([y, k]) => { for (let i = 0; i < k; i++) { const x = 50 - (k - 1) * 7 + i * 14; b += `<circle cx="${x}" cy="${y}" r="6.5" fill="${dough}" stroke="${dough_dark}" stroke-width="1.2"/>`; } });
+    return `<svg viewBox="0 0 100 100">${shadow}
+      <path d="M31 64 L69 64 L63 93 L37 93 Z" fill="#f7f3ea"/>
+      <rect x="34" y="75" width="32" height="5" fill="${c}" opacity=".85"/>
+      ${b}
+      <path d="M33 30 Q38 16 50 18 Q62 16 67 30 Q58 26 50 28 Q42 26 33 30 Z" fill="#fffaf2"/>
+      <ellipse cx="50" cy="21" rx="9" ry="6" fill="#fffaf2"/>
+      <path d="M32 40 L44 48 L56 38 L68 48" stroke="${shade(c, -.1)}" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="47" cy="14" r="4.5" fill="${c}"/>
+      ${dots(c, 36, 20, 28, 30, 10)}</svg>`;
+  }
+  if (kind === "crepe") return `<svg viewBox="0 0 100 100">
+    <ellipse cx="50" cy="78" rx="42" ry="10" fill="#f7f3ea" opacity=".9"/>
+    <ellipse cx="50" cy="77" rx="34" ry="7" fill="#e9e4da"/>
+    <path d="M14 74 L86 74 L56 26 Z" fill="#f1c27d"/>
+    <path d="M14 74 L56 26 L46 74 Z" fill="#e2a95e"/>
+    <path d="M26 64 L38 56 L46 64 L56 50 L64 60 L72 54" stroke="${c}" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    ${dots(c, 30, 46, 40, 24, 10)}
+    <circle cx="66" cy="66" r="5" fill="${shade(c, .1)}"/>
+    <circle cx="58" cy="68" r="4" fill="${shade(c, -.1)}"/></svg>`;
+  if (f === "extra_fruit") return `<svg viewBox="0 0 100 100">${shadow}
+    <path d="M50 30 C30 30 24 52 34 70 C40 82 60 82 66 70 C76 52 70 30 50 30 Z" fill="${c}"/>
+    ${dots(c, 38, 40, 24, 34, 12)}
+    <path d="M38 30 Q50 18 62 30 Q50 26 38 30 Z" fill="#4caf50"/>
+    <path d="M50 26 L50 14" stroke="#4caf50" stroke-width="3" stroke-linecap="round"/></svg>`;
+  return `<svg viewBox="0 0 100 100">${shadow}
+    <path d="M30 56 L70 56 L64 90 L36 90 Z" fill="${dough}"/>
+    <circle cx="50" cy="44" r="20" fill="${c}"/>
+    <path d="M30 50 Q36 58 42 52 Q48 60 54 52 Q60 58 70 50 L70 56 L30 56 Z" fill="${c}"/>
+    <path d="M38 38 Q42 32 48 32" stroke="#fff" stroke-width="2.5" fill="none" opacity=".6" stroke-linecap="round"/></svg>`;
+}
+
+let lang = "en";
+const cat_of = id => cats.find(c => c.id === id);
+const color_of = it => colors[it.c || it.f] || "#cccccc";
+const name_of = (it, l) => it.name || words[it.f][l];
+const sub_of = (it, l) => it.ing ? it.ing.map(k => `<bdi>${words[k][l]}</bdi>`).join(" · ") : "";
+const board = it => {
+  if (it.name) return it.name.toUpperCase();
+  const n = { white_choc: "WHITE CHOCOLATE", extra_ice: "EXTRA ICE CREAM", extra_fruit: "EXTRA FRUIT" }[it.f] || words[it.f].en.toUpperCase();
+  return it.cat === "ice" ? n + " ICE" : n;
+};
+const fmt = (p, sign = "") => `<bdi>${sign}${new Intl.NumberFormat("hu-HU").format(p)} Ft</bdi>`;
+const visual = it => it.img
+  ? `<img class="photo" src="${it.img}" alt="" loading="lazy">`
+  : art(cat_of(it.cat).kind, color_of(it), it.f || it.c);
+const tint = it => `background: radial-gradient(circle at 50% 45%, ${rgba(color_of(it), .28)}, ${rgba(color_of(it), .04)} 70%);`;
+
+const ready = codes.filter(c => ui.hint[c]);
+const native = c => langs.find(x => x[0] === c)[1];
+
+function match_tag(t) {
+  t = t.toLowerCase();
+  const base = t.split("-")[0];
+  if (base === "zh") return /hant|-tw|-hk|-mo/.test(t) ? "zh-Hant" : "zh";
+  const alias = { nb: "no", nn: "no", fil: "tl", iw: "he", in: "id" };
+  if (alias[base]) return alias[base];
+  if (t === "sr-me" || t.startsWith("sr-latn-me")) return "cnr";
+  return codes.find(c => c.toLowerCase() === t) || codes.find(c => c.toLowerCase() === base) || null;
+}
+
+function pick_lang() {
+  let saved = null;
+  try { saved = localStorage.getItem("lang"); } catch (e) {}
+  if (saved && ready.includes(saved)) return saved;
+  for (const t of navigator.languages || [navigator.language || "en"]) {
+    const c = match_tag(t);
+    if (c && ready.includes(c)) return c;
+  }
+  return "en";
+}
+
+function set_lang(l) {
+  lang = l;
+  try { localStorage.setItem("lang", l); } catch (e) {}
+  render();
+}
+
+function render() {
+  document.documentElement.lang = lang;
+  document.documentElement.dir = rtl.includes(lang) ? "rtl" : "ltr";
+  document.getElementById("lang-name").textContent = native(lang);
+  document.getElementById("tagline").textContent = ui.tagline[lang];
+  document.getElementById("chips").innerHTML = cats.map(c => `<button class="chip" data-go="${c.id}">${c.title[lang]}</button>`).join("");
+  let html = `<div class="hint"><div class="num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div><p>${ui.hint[lang]}</p></div>`;
+  for (const c of cats) {
+    const list = items.filter(i => i.cat === c.id);
+    html += `<section id="s-${c.id}"><h2>${c.title[lang]}</h2>${c.desc ? `<p class="desc">${c.desc[lang]}</p>` : `<p class="desc"></p>`}`;
+    if (c.id === "extra") {
+      html += `<div class="extras">${list.map(it => `<button class="row" data-n="${it.n}"><span class="art" style="${tint(it)}">${visual(it)}</span><span class="name"><bdi>${name_of(it, lang)}</bdi></span><span class="price">${fmt(it.price, "+")}</span></button>`).join("")}</div>`;
+    } else {
+      html += `<div class="grid">${list.map(it => `<button class="card" data-n="${it.n}"><span class="art" style="${tint(it)}">${visual(it)}</span><span class="info"><span class="name"><bdi>${name_of(it, lang)}</bdi></span>${it.ing ? `<span class="sub">${sub_of(it, lang)}</span>` : ""}<span class="price">${fmt(it.price)}</span></span></button>`).join("")}</div>`;
+    }
+    html += `</section>`;
+  }
+  html += `<footer class="foot"><p>${ui.allergens[lang]}</p><p><a href="mailto:${contact}">${ui.mistake[lang]}</a></p><p class="sign">CHIMNEY CAKE POINT</p></footer>`;
+  document.getElementById("menu").innerHTML = html;
+  watch_sections();
+}
+
+const sheet = document.getElementById("sheet");
+const veil = document.getElementById("veil");
+const open_sheet = html => { sheet.innerHTML = `<div class="grip"></div>${html}<button class="close" data-close>${ui.close[lang]}</button>`; sheet.scrollTop = 0; sheet.classList.add("open"); veil.classList.add("open"); };
+const close_sheet = () => { sheet.classList.remove("open"); veil.classList.remove("open"); };
+
+function show_item(n) {
+  const it = items.find(i => i.n === n);
+  const c = cat_of(it.cat);
+  open_sheet(`<div class="big" style="${tint(it)}">${visual(it)}</div>
+    <div class="say"><p>${ui.say[lang]}</p><div class="n">${board(it)}</div><small>${c.board}</small></div>
+    <h3><bdi>${name_of(it, lang)}</bdi></h3>
+    <div class="sub">${c.title[lang]}${it.ing ? " · " + sub_of(it, lang) : ""}</div>
+    <div class="price">${fmt(it.price, it.cat === "extra" ? "+" : "")}</div>`);
+}
+
+function show_langs() {
+  const sorted = ready.slice().sort((a, b) => native(a).localeCompare(native(b)));
+  const btn = c => `<button data-lang="${c}" class="${c === lang ? "on" : ""}">${native(c)}</button>`;
+  open_sheet(`<h4>${ui.choose[lang]}</h4>
+    <div class="quick">${quick.filter(c => ready.includes(c)).map(btn).join("")}</div>
+    <input class="find" id="find" type="search" autocomplete="off" placeholder="${ui.search[lang]}">
+    <div class="langs" id="lang-list">${sorted.map(btn).join("")}</div>
+    <p class="empty" id="lang-empty" hidden>${ui.nothing[lang]}</p>`);
+}
+
+function filter_langs(q) {
+  q = q.trim().toLowerCase();
+  let shown = 0;
+  document.querySelectorAll("#lang-list [data-lang]").forEach(b => {
+    const l = langs.find(x => x[0] === b.dataset.lang);
+    const ok = !q || l.some(v => v.toLowerCase().includes(q));
+    b.hidden = !ok;
+    if (ok) shown++;
+  });
+  document.getElementById("lang-empty").hidden = shown > 0;
+}
+
+let observer;
+function watch_sections() {
+  if (observer) observer.disconnect();
+  if (!("IntersectionObserver" in window)) return;
+  observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const id = e.target.id.slice(2);
+      document.querySelectorAll(".chip").forEach(ch => {
+        const on = ch.dataset.go === id;
+        ch.classList.toggle("on", on);
+        if (on) ch.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+      });
+    });
+  }, { rootMargin: "-120px 0px -65% 0px" });
+  document.querySelectorAll("section").forEach(s => observer.observe(s));
+}
+
+document.addEventListener("click", e => {
+  const go = e.target.closest("[data-go]");
+  if (go) { document.getElementById("s-" + go.dataset.go).scrollIntoView({ behavior: "smooth" }); return; }
+  const card = e.target.closest("[data-n]");
+  if (card) { show_item(Number(card.dataset.n)); return; }
+  const l = e.target.closest("[data-lang]");
+  if (l) { close_sheet(); set_lang(l.dataset.lang); return; }
+  if (e.target.closest("[data-close]") || e.target === veil) close_sheet();
+  if (e.target.closest("#lang-btn")) show_langs();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") close_sheet(); });
+document.addEventListener("input", e => { if (e.target.id === "find") filter_langs(e.target.value); });
+
+lang = pick_lang();
+render();
+</script>
+</body>
+</html>
